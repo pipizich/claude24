@@ -1,0 +1,300 @@
+/* Toast container - ensure visibility */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.toast-container .toast {
+    pointer-events: auto;
+    margin-bottom: 10px;
+}
+
+/* Toast base styles */
+.toast {
+    backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    position: relative;
+    z-index: 10001;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+}
+
+/* Toast fade in animation */
+.toast.show {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.toast.hide {
+    animation: slideOutRight 0.3s ease-out;
+    opacity: 0;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%) translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Light mode toasts - Keep as is */
+[data-theme="light"] .toast {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .toast.success {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    color: #15803d;
+    border-color: #86efac;
+}
+
+[data-theme="light"] .toast.error {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+[data-theme="light"] .toast.warning {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    color: #d97706;
+    border-color: #fcd34d;
+}
+
+[data-theme="light"] .toast.info {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    color: #2563eb;
+    border-color: #93c5fd;
+}
+
+/* Dark mode toasts - Retro 80s Style */
+[data-theme="dark"] .toast {
+    background: rgba(10, 10, 10, 0.95);
+    font-family: 'Courier New', monospace;
+    border: 2px solid;
+    border-radius: 0;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.8),
+        0 0 40px currentColor,
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .toast.success {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(80, 250, 123, 0.1) 100%);
+    color: #50fa7b;
+    border-color: #50fa7b;
+    text-shadow: 0 0 5px rgba(80, 250, 123, 0.5);
+}
+
+[data-theme="dark"] .toast.error {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(255, 85, 85, 0.1) 100%);
+    color: #ff5555;
+    border-color: #ff5555;
+    text-shadow: 0 0 5px rgba(255, 85, 85, 0.5);
+}
+
+[data-theme="dark"] .toast.warning {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(241, 250, 140, 0.1) 100%);
+    color: #f1fa8c;
+    border-color: #f1fa8c;
+    text-shadow: 0 0 5px rgba(241, 250, 140, 0.5);
+}
+
+[data-theme="dark"] .toast.info {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(139, 233, 253, 0.1) 100%);
+    color: #8be9fd;
+    border-color: #8be9fd;
+    text-shadow: 0 0 5px rgba(139, 233, 253, 0.5);
+}
+
+/* Toast animations enhanced with retro neon effect */
+.toast::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    height: 4px;
+    background: currentColor;
+    opacity: 1;
+}
+
+[data-theme="dark"] .toast::before {
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        currentColor 20%, 
+        currentColor 80%, 
+        transparent 100%);
+    animation: retro-scan 2s linear infinite;
+}
+
+@keyframes retro-scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Toast hover effect with retro glow */
+[data-theme="dark"] .toast:hover {
+    transform: translateX(-5px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.9),
+        0 0 60px currentColor,
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Icon improvements with retro style */
+.toast-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+[data-theme="dark"] .toast-icon {
+    border: 1px solid currentColor;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 
+        0 0 10px currentColor,
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .toast.success .toast-icon {
+    background: rgba(80, 250, 123, 0.1);
+    animation: retro-pulse-green 2s ease-in-out infinite;
+}
+
+[data-theme="dark"] .toast.error .toast-icon {
+    background: rgba(255, 85, 85, 0.1);
+    animation: retro-pulse-red 2s ease-in-out infinite;
+}
+
+[data-theme="dark"] .toast.warning .toast-icon {
+    background: rgba(241, 250, 140, 0.1);
+    animation: retro-pulse-yellow 2s ease-in-out infinite;
+}
+
+[data-theme="dark"] .toast.info .toast-icon {
+    background: rgba(139, 233, 253, 0.1);
+    animation: retro-pulse-cyan 2s ease-in-out infinite;
+}
+
+/* Retro pulse animations */
+@keyframes retro-pulse-green {
+    0%, 100% { box-shadow: 0 0 5px rgba(80, 250, 123, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(80, 250, 123, 0.8); }
+}
+
+@keyframes retro-pulse-red {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 85, 85, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 85, 85, 0.8); }
+}
+
+@keyframes retro-pulse-yellow {
+    0%, 100% { box-shadow: 0 0 5px rgba(241, 250, 140, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(241, 250, 140, 0.8); }
+}
+
+@keyframes retro-pulse-cyan {
+    0%, 100% { box-shadow: 0 0 5px rgba(139, 233, 253, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(139, 233, 253, 0.8); }
+}
+
+/* Retro CRT scanline effect for toasts */
+[data-theme="dark"] .toast::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.03) 2px,
+        rgba(255, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+}
+
+/* Add retro typing effect to toast messages */
+[data-theme="dark"] .toast-message {
+    animation: retro-type 0.5s steps(20, end);
+    overflow: hidden;
+    white-space: nowrap;
+	display: block;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+@keyframes retro-type {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Retro close button */
+[data-theme="dark"] .toast-close {
+    color: currentColor;
+    opacity: 0.8;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-shadow: 0 0 5px currentColor;
+}
+
+[data-theme="dark"] .toast-close:hover {
+    opacity: 1;
+    transform: scale(1.2);
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .toast {
+        animation: none !important;
+    }
+    
+    .toast.show,
+    .toast.hide {
+        animation: none !important;
+        transition: opacity 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .toast::before {
+        animation: none !important;
+    }
+    
+    [data-theme="dark"] .toast-icon {
+        animation: none !important;
+    }
+    
+    [data-theme="dark"] .toast {
+        text-shadow: none !important;
+    }
+}

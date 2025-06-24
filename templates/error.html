@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error {{ error_code }} - Museum Art Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 50px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .error-code {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--title-color);
+            margin-bottom: 20px;
+        }
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+        .back-button {
+            background-color: var(--button-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: var(--button-hover-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Museum Art Gallery</h1>
+    </header>
+    
+    <main>
+        <div class="error-container">
+            <div class="error-code">{{ error_code }}</div>
+            <div class="error-message">
+                {% if error_code == 404 %}
+                    Page Not Found
+                {% elif error_code == 500 %}
+                    Something Went Wrong
+                {% else %}
+                    Error Occurred
+                {% endif %}
+            </div>
+            <p>{{ error_message }}</p>
+            <a href="{{ url_for('index') }}" class="back-button">
+                Back to Gallery
+            </a>
+        </div>
+    </main>
+</body>
+</html>

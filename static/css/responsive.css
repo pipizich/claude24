@@ -1,0 +1,63 @@
+@media (max-width: 1600px) {
+    .artwork {
+        width: calc(25% - 15px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .artwork {
+        width: calc(33.333% - 14px);
+    }
+}
+
+@media (max-width: 900px) {
+    .artwork {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 600px) {
+    .artwork {
+        width: 100%;
+    }
+    
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .toast-container {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+    }
+    
+    .toast {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .artwork,
+    .artwork.artwork-visible,
+    .artwork.artwork-new {
+        animation: none;
+        transition: opacity 0.3s ease;
+    }
+    
+    .artwork:hover {
+        transform: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .toast {
+        transition: opacity 0.3s ease;
+    }
+}

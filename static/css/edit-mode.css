@@ -1,0 +1,548 @@
+/* =================================
+   EDIT MODE TOGGLE BUTTON
+   ================================= */
+
+.edit-mode-toggle {
+    position: fixed;
+    top: 70px;
+    left: 20px; /* Di chuyển sang phải */
+	z-index: 1000;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+    transition: all 0.3s ease;
+}
+
+.edit-mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+.edit-mode-toggle.active {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Dark mode toggle button - đảm bảo vị trí cố định */
+.dark-mode-toggle {
+    position: fixed !important;
+    top: 20px;
+    right: 80px; /* Cách edit button 60px */
+    z-index: 1000;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd93d 0%, #ff6b35 100%);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* Dark mode styles for edit toggle */
+[data-theme="dark"] .edit-mode-toggle {
+    background: linear-gradient(135deg, #50fa7b 0%, #5af78e 100%);
+    color: #0a0a0a;
+    box-shadow: 0 4px 15px rgba(80, 250, 123, 0.4);
+}
+
+[data-theme="dark"] .edit-mode-toggle.active {
+    background: linear-gradient(135deg, #ff5555 0%, #ff6b6b 100%);
+    color: white;
+}
+
+[data-theme="dark"] .dark-mode-toggle {
+    background: linear-gradient(135deg, #8be9fd 0%, #50fa7b 100%);
+    color: #0a0a0a;
+}
+
+/* =================================
+   EDIT MODE CONTROLS BAR
+   ================================= */
+
+.edit-mode-controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center; /* Căn giữa thay vì space-between */
+    gap: 20px;
+}
+
+.edit-mode .edit-mode-controls {
+    display: flex;
+}
+
+[data-theme="dark"] .edit-mode-controls {
+    background: rgba(10, 10, 10, 0.98);
+    box-shadow: 0 2px 20px rgba(255, 107, 53, 0.2);
+    border-bottom: 2px solid #ff6b35;
+}
+
+.edit-controls-center {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+.edit-controls-right {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Control buttons */
+.btn-select-all {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-select-all:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.btn-batch-upload {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-batch-upload:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.selection-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: #333;
+    padding: 8px 16px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .selection-counter {
+    color: #8be9fd;
+    background: rgba(139, 233, 253, 0.1);
+    border-color: rgba(139, 233, 253, 0.2);
+}
+
+/* =================================
+   EDIT MODE ACTION BAR
+   ================================= */
+
+.edit-action-bar {
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: bottom 0.3s ease;
+}
+
+.edit-action-bar.visible {
+    bottom: 0;
+}
+
+[data-theme="dark"] .edit-action-bar {
+    background: rgba(10, 10, 10, 0.98);
+    box-shadow: 0 -4px 30px rgba(255, 107, 53, 0.3);
+    border-top: 2px solid #ff6b35;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-move-top {
+    background: #6366f1;
+    color: white;
+}
+
+.btn-move-top:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+}
+
+.btn-move-bottom {
+    background: #8b5cf6;
+    color: white;
+}
+
+.btn-move-bottom:hover {
+    background: #7c3aed;
+    transform: translateY(-1px);
+}
+
+.btn-delete-selected {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-delete-selected:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+/* =================================
+   EDIT MODE GALLERY STYLES
+   ================================= */
+
+/* Disable animations in edit mode */
+.edit-mode .artwork {
+    transition: none !important;
+    animation: none !important;
+}
+
+.edit-mode .artwork:hover {
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+.edit-mode .artwork-container img {
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Thumbnail size in edit mode */
+.edit-mode .artwork {
+    width: 150px;
+}
+
+.edit-mode .artwork-container {
+    height: 150px;
+}
+
+.edit-mode .artwork-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Checkbox styles */
+.artwork-checkbox {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+}
+
+.edit-mode .artwork-checkbox {
+    opacity: 1;
+    visibility: visible;
+}
+
+.artwork-checkbox:checked {
+    accent-color: #3b82f6;
+}
+
+/* Selected artwork overlay */
+.artwork.selected::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.2);
+    pointer-events: none;
+}
+
+[data-theme="dark"] .artwork.selected::after {
+    background: rgba(80, 250, 123, 0.3);
+}
+
+/* Hide artwork info in edit mode */
+.edit-mode .artwork-info {
+    display: none;
+}
+
+/* Hide individual action buttons in edit mode */
+.edit-mode .artwork-actions {
+    display: none !important;
+}
+
+/* =================================
+   BATCH UPLOAD MODAL
+   ================================= */
+
+.batch-upload-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.batch-upload-content {
+    position: relative;
+    background-color: var(--background-color);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.batch-drop-zone {
+    border: 3px dashed var(--border-color);
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.batch-drop-zone:hover {
+    border-color: var(--button-color);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.batch-drop-zone.dragover {
+    background: rgba(78, 205, 196, 0.1);
+    border-color: #4ecdc4;
+}
+
+.batch-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.batch-preview-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.batch-preview-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.batch-preview-item .remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.batch-upload-progress {
+    margin-top: 20px;
+}
+
+.progress-item {
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* =================================
+   RESPONSIVE STYLES
+   ================================= */
+
+@media (max-width: 768px) {
+    .edit-mode-toggle {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .dark-mode-toggle {
+        top: 15px;
+        right: 65px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .edit-mode-controls {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .edit-controls-center {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .edit-controls-right {
+        position: static;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .edit-mode .artwork {
+        width: calc(50% - 10px);
+    }
+    
+    .edit-action-bar {
+        flex-wrap: wrap;
+        padding: 15px;
+        gap: 10px;
+    }
+    
+    .action-btn {
+        flex: 1;
+        min-width: 120px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-mode .artwork {
+        width: calc(33.333% - 7px);
+    }
+    
+    .edit-mode .artwork-container,
+    .edit-mode .artwork-container img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .dark-mode-toggle {
+        right: 60px;
+    }
+}
+
+/* =================================
+   ACCESSIBILITY
+   ================================= */
+
+.edit-mode-toggle:focus,
+.dark-mode-toggle:focus,
+.btn-select-all:focus,
+.btn-batch-upload:focus,
+.action-btn:focus {
+    outline: 2px solid var(--button-color);
+    outline-offset: 2px;
+}
+
+.artwork-checkbox:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* =================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================= */
+
+/* Disable will-change in edit mode */
+.edit-mode .artwork {
+    will-change: auto !important;
+}
+
+/* Contain layout changes */
+.edit-mode .gallery {
+    contain: layout style;
+}
+
+/* Force hardware acceleration off for better performance */
+.edit-mode .artwork-container img {
+    transform: translateZ(0) !important;
+    backface-visibility: visible !important;
+}

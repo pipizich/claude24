@@ -1,0 +1,790 @@
+/* lightbox-themes.css - Visual themes & styling */
+
+/* 🎨 DUAL THEME LIGHTBOX - Retro Neon Dark + Modern Minimal Light */
+
+/* =================================
+   LIGHT MODE - MODERN DARK STYLE
+   ================================= */
+
+/* Light mode base - Dark background with white/gray text */
+[data-theme="light"] .lightbox {
+    background: rgba(20, 20, 20, 0.95);
+}
+
+[data-theme="light"] .lightbox-info {
+    background: rgba(30, 30, 30, 0.95);
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .lightbox-title {
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+    text-transform: none;
+    letter-spacing: normal;
+    text-shadow: none;
+}
+
+[data-theme="light"] .lightbox-description {
+    color: #a8a8a8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Light mode edit buttons - Repositioned to match save/cancel */
+[data-theme="light"] .edit-btn {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    right: 8px; /* Position on the right side like save/cancel */
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+[data-theme="light"] .edit-btn:hover {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+}
+
+[data-theme="light"] .edit-btn:active {
+    background: rgba(255, 255, 255, 0.4) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.1s ease !important;
+}
+
+[data-theme="light"] .edit-btn.editing {
+    display: none; /* Hide edit button when in editing mode */
+}
+
+[data-theme="light"] .editing-textarea {
+    background: rgba(40, 40, 40, 0.95) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-theme="light"] .editing-textarea:focus {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme="light"] .editable-title,
+[data-theme="light"] .editable-description {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    color: #ffffff;
+    padding: 8px 40px 8px 8px; /* Space for edit button on the right */
+    position: relative;
+}
+
+[data-theme="light"] .editable-title.empty,
+[data-theme="light"] .editable-description.empty {
+    color: #666666;
+    font-style: italic;
+}
+
+[data-theme="light"] .editable-title.editing,
+[data-theme="light"] .editable-description.editing {
+    background: rgba(40, 40, 40, 0.95);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px 80px 12px 16px; /* Space for save/cancel buttons */
+    margin: -12px -16px;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Light mode navigation */
+[data-theme="light"] .lightbox-nav {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+[data-theme="light"] .lightbox-close {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .lightbox-close:hover {
+    background: rgba(239, 68, 68, 0.8);
+    color: white;
+}
+
+/* Light mode metadata */
+[data-theme="light"] .metadata-section {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .metadata-section h4 {
+    color: #ffffff;
+}
+
+[data-theme="light"] .metadata-label {
+    color: #a8a8a8;
+}
+
+[data-theme="light"] .metadata-value {
+    color: #e0e0e0;
+}
+
+[data-theme="light"] .metadata-item {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="light"] .metadata-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Light mode prompts */
+[data-theme="light"] .prompt-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .prompt-header {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="light"] .prompt-header h6 {
+    color: #ffffff;
+}
+
+[data-theme="light"] .prompt-content {
+    border-right: 3px solid rgba(255, 255, 255, 0.2) !important;
+    color: #e0e0e0 !important;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="light"] .section-header {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .section-header:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .section-header h5 {
+    color: #ffffff;
+}
+
+[data-theme="light"] .toggle-icon {
+    color: #a8a8a8;
+}
+
+/* Light mode buttons */
+[data-theme="light"] .title-show-more,
+[data-theme="light"] .description-show-more {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+
+[data-theme="light"] .title-show-more:hover,
+[data-theme="light"] .description-show-more:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .expand-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+}
+
+[data-theme="light"] .expand-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(-1px) scale(1.05);
+}
+
+[data-theme="light"] .prompt-show-more {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+    padding: 6px 12px;
+}
+
+[data-theme="light"] .prompt-show-more:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .copy-btn {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .prompt-copy-btn {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+
+[data-theme="light"] .prompt-copy-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Light mode save/cancel buttons - Only show when editing */
+[data-theme="light"] .title-edit-controls,
+[data-theme="light"] .description-edit-controls {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+[data-theme="light"] .title-edit-controls.visible,
+[data-theme="light"] .description-edit-controls.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+[data-theme="light"] .title-edit-controls .save-btn,
+[data-theme="light"] .title-edit-controls .cancel-btn,
+[data-theme="light"] .description-edit-controls .save-btn,
+[data-theme="light"] .description-edit-controls .cancel-btn {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 12px;
+}
+
+
+
+
+
+[data-theme="light"] .title-edit-controls .save-btn:hover,
+[data-theme="light"] .description-edit-controls .save-btn:hover {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+    transform: scale(1.1);
+}
+
+[data-theme="light"] .title-edit-controls .save-btn:active,
+[data-theme="light"] .description-edit-controls .save-btn:active {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.6);
+}
+
+[data-theme="light"] .title-edit-controls .cancel-btn:hover,
+[data-theme="light"] .description-edit-controls .cancel-btn:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+    transform: scale(1.1);
+}
+
+[data-theme="light"] .title-edit-controls .cancel-btn:active,
+[data-theme="light"] .description-edit-controls .cancel-btn:active {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.6);
+}
+
+/* =================================
+   DARK MODE - RETRO NEON
+   ================================= */
+
+/* Dark mode edit buttons - Repositioned to match save/cancel */
+[data-theme="dark"] .edit-btn {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    color: rgba(0, 255, 65, 0.6);
+    right: 8px; /* Position on the right side like save/cancel */
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0; /* Retro square style */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    font-family: 'Courier New', monospace;
+}
+
+[data-theme="dark"] .edit-btn:hover {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+    transform: scale(1.15);
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+}
+
+[data-theme="dark"] .edit-btn:active {
+    background: rgba(0, 255, 65, 0.3) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.8) !important;
+    transition: all 0.1s ease !important;
+}
+
+[data-theme="dark"] .edit-btn.editing {
+    display: none; /* Hide edit button when in editing mode */
+}
+
+[data-theme="dark"] .editing-textarea {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 20, 0, 0.95) 100%) !important;
+    color: #00ff41 !important;
+    border: 2px solid #00ff41 !important;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.8) !important;
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.03) 2px,
+        rgba(0, 255, 65, 0.03) 4px
+    ) !important;
+}
+
+[data-theme="dark"] .editing-textarea:focus {
+    border-color: #00ff41 !important;
+    box-shadow: 
+        inset 0 0 30px rgba(0, 255, 65, 0.15),
+        0 0 20px rgba(0, 255, 65, 0.4) !important;
+}
+
+[data-theme="dark"] .editable-title,
+[data-theme="dark"] .editable-description {
+    font-family: 'Courier New', 'JetBrains Mono', monospace;
+    color: #00ff41;
+    text-shadow: 0 0 3px rgba(0, 255, 65, 0.3);
+    padding: 8px 40px 8px 8px; /* Space for edit button on the right */
+    position: relative;
+}
+
+[data-theme="dark"] .editable-title.empty,
+[data-theme="dark"] .editable-description.empty {
+    color: rgba(0, 255, 65, 0.4);
+    font-style: normal;
+}
+
+[data-theme="dark"] .editable-title.empty::before,
+[data-theme="dark"] .editable-description.empty::before {
+    content: "> ";
+    color: rgba(0, 255, 65, 0.6);
+    animation: retro-blink 1.5s infinite;
+}
+
+[data-theme="dark"] .editable-title.editing,
+[data-theme="dark"] .editable-description.editing {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 20, 0, 0.95) 100%);
+    color: #00ff41;
+    border: 2px solid #00ff41;
+    border-radius: 0;
+    padding: 12px 80px 12px 16px; /* Space for save/cancel buttons */
+    margin: -12px -16px;
+    box-shadow: 
+        inset 0 0 30px rgba(0, 255, 65, 0.15),
+        0 0 20px rgba(0, 255, 65, 0.4);
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.8);
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.03) 2px,
+        rgba(0, 255, 65, 0.03) 4px
+    );
+}
+
+[data-theme="dark"] .editable-title.editing::after,
+[data-theme="dark"] .editable-description.editing::after {
+    content: "█";
+    color: #00ff41;
+    animation: retro-cursor 1.2s infinite;
+}
+
+/* Dark mode save/cancel buttons - Only show when editing */
+[data-theme="dark"] .title-edit-controls,
+[data-theme="dark"] .description-edit-controls {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+[data-theme="dark"] .title-edit-controls.visible,
+[data-theme="dark"] .description-edit-controls.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+[data-theme="dark"] .title-edit-controls .save-btn,
+[data-theme="dark"] .title-edit-controls .cancel-btn,
+[data-theme="dark"] .description-edit-controls .save-btn,
+[data-theme="dark"] .description-edit-controls .cancel-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 255, 65, 0.6);
+}
+
+
+
+
+
+[data-theme="dark"] .title-edit-controls .save-btn:hover,
+[data-theme="dark"] .description-edit-controls .save-btn:hover {
+    background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+    color: #000;
+    transform: scale(1.15);
+    box-shadow: 
+        0 0 15px rgba(0, 255, 65, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: #00ff41;
+}
+
+[data-theme="dark"] .title-edit-controls .save-btn:active,
+[data-theme="dark"] .description-edit-controls .save-btn:active {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.7);
+}
+
+[data-theme="dark"] .title-edit-controls .cancel-btn:hover,
+[data-theme="dark"] .description-edit-controls .cancel-btn:hover {
+    background: linear-gradient(135deg, #ff3366 0%, #cc1144 100%);
+    color: #fff;
+    transform: scale(1.15);
+    box-shadow: 
+        0 0 15px rgba(255, 51, 102, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: #ff3366;
+}
+
+[data-theme="dark"] .title-edit-controls .cancel-btn:active,
+[data-theme="dark"] .description-edit-controls .cancel-btn:active {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
+}
+
+[data-theme="dark"] .title-edit-controls .save-btn:disabled,
+[data-theme="dark"] .description-edit-controls .save-btn:disabled {
+    background: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 255, 65, 0.3);
+    animation: retro-loading 1s linear infinite;
+}
+
+/* Dark mode show more buttons */
+[data-theme="dark"] .title-show-more,
+[data-theme="dark"] .description-show-more {
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    border-radius: 0;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+[data-theme="dark"] .title-show-more:hover {
+    background: #00ff41;
+    color: #000;
+    text-shadow: none;
+}
+
+[data-theme="dark"] .description-show-more {
+    border-color: #ffa500;
+    color: #ffa500;
+}
+
+[data-theme="dark"] .description-show-more:hover {
+    background: #ffa500;
+    color: #000;
+}
+
+/* Dark mode prompts */
+[data-theme="dark"] .prompt-section {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .prompt-header {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .prompt-header h6 {
+    color: white;
+}
+
+[data-theme="dark"] .prompt-content {
+    border-right: 3px solid #8be9fd;
+    color: #f1fa8c;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .prompt-copy-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+[data-theme="dark"] .prompt-copy-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+[data-theme="dark"] .prompt-show-more {
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    border: none;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .prompt-show-more:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+/* Dark mode negative prompt */
+[data-theme="dark"] .negative-prompt-section .prompt-header {
+    background: linear-gradient(135deg, #e17055, #d63031);
+}
+
+[data-theme="dark"] .negative-prompt-section .prompt-content {
+    border-right: 3px solid #ff6b6b;
+    color: #ffb3b3;
+}
+
+/* =================================
+   RETRO ANIMATIONS (DARK MODE ONLY)
+   ================================= */
+
+@keyframes retro-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+@keyframes retro-cursor {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes retro-loading {
+    0% { 
+        background: rgba(0, 0, 0, 0.8);
+        border-color: rgba(0, 255, 65, 0.3);
+    }
+    50% { 
+        background: rgba(0, 20, 0, 0.9);
+        border-color: rgba(0, 255, 65, 0.6);
+    }
+    100% { 
+        background: rgba(0, 0, 0, 0.8);
+        border-color: rgba(0, 255, 65, 0.3);
+    }
+}
+
+[data-theme="dark"] .update-success {
+    animation: retroUpdateSuccess 1s ease-out;
+}
+
+@keyframes retroUpdateSuccess {
+    0% { 
+        background: linear-gradient(45deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 255, 255, 0.1) 100%);
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    }
+    100% { 
+        background: transparent;
+        box-shadow: none;
+    }
+}
+
+/* Dark mode edit indicators */
+[data-theme="dark"] .editable-title::after,
+[data-theme="dark"] .editable-description::after {
+    background: #00ff41;
+    box-shadow: 0 0 4px rgba(0, 255, 65, 0.5);
+}
+
+/* Dark mode selection */
+[data-theme="dark"] .editable-title.editing::selection,
+[data-theme="dark"] .editable-description.editing::selection {
+    background: rgba(0, 255, 65, 0.3);
+    color: #000;
+}
+
+/* =================================
+   SMOOTH THEME TRANSITIONS
+   ================================= */
+
+/* Smooth transition for all button types */
+.title-show-more,
+.description-show-more,
+.expand-btn,
+.prompt-show-more,
+.copy-btn,
+.prompt-copy-btn,
+.save-btn,
+.cancel-btn,
+.edit-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states for accessibility */
+.title-show-more:focus,
+.description-show-more:focus,
+.expand-btn:focus,
+.prompt-show-more:focus,
+.edit-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .editable-title:focus,
+[data-theme="dark"] .editable-description:focus {
+    outline-color: #00ff41;
+    outline-style: dashed;
+}
+
+[data-theme="dark"] .edit-btn:focus {
+    outline-color: #00ff41;
+    outline-style: solid;
+}
+
+[data-theme="dark"] .save-btn:focus {
+    outline-color: #00ff41;
+}
+
+[data-theme="dark"] .cancel-btn:focus {
+    outline-color: #ff3366;
+}
+
+/* Hide/Show logic for editing states - UPDATED FOR CORRECT STRUCTURE */
+
+/* Edit buttons - Always visible by default */
+.edit-btn {
+    display: flex !important;
+    position: absolute !important;
+    right: 8px !important;
+    top: 8px !important;
+    z-index: 20 !important;
+}
+
+/* Edit controls containers - Hidden by default */
+.title-edit-controls,
+.description-edit-controls {
+    display: flex !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* When controls are visible (added by JavaScript) */
+.title-edit-controls.visible,
+.description-edit-controls.visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Hide edit button when controls are visible */
+.title-edit-controls.visible ~ .edit-btn,
+.description-edit-controls.visible ~ .edit-btn {
+    display: none !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .title-show-more,
+    .description-show-more,
+    .expand-btn,
+    .prompt-show-more {
+        font-size: 11px;
+        padding: 3px 6px;
+        border-width: 1.5px;
+    }
+    
+    [data-theme="dark"] .title-edit-controls .save-btn,
+    [data-theme="dark"] .title-edit-controls .cancel-btn,
+    [data-theme="dark"] .description-edit-controls .save-btn,
+    [data-theme="dark"] .description-edit-controls .cancel-btn,
+    [data-theme="dark"] .edit-btn,
+    [data-theme="light"] .title-edit-controls .save-btn,
+    [data-theme="light"] .title-edit-controls .cancel-btn,
+    [data-theme="light"] .description-edit-controls .save-btn,
+    [data-theme="light"] .description-edit-controls .cancel-btn,
+    [data-theme="light"] .edit-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .title-edit-controls,
+    .description-edit-controls {
+        gap: 6px;
+    }
+}

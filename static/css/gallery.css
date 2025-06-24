@@ -1,0 +1,410 @@
+/* static/css/gallery.css - Optimized for smooth animations */
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+    
+    /* Ensure normal scrolling */
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: relative !important;
+    
+    /* Performance optimization */
+    contain: layout style;
+}
+
+/* Virtual scroll specific styles */
+.gallery.virtual-enabled {
+    display: block;
+    position: relative;
+}
+
+.virtual-scroll-spacer {
+    position: relative;
+    width: 100%;
+    pointer-events: none;
+}
+
+.virtual-scroll-viewport {
+    pointer-events: none;
+}
+
+.virtual-scroll-content {
+    pointer-events: auto;
+}
+
+.virtual-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    width: 100%;
+}
+
+/* Artwork card styles */
+.artwork {
+    width: calc(20% - 16px);
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    
+    /* Performance optimizations */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    contain: layout style paint;
+    
+    /* Only use will-change during animations */
+    will-change: auto;
+}
+
+/* Add will-change only during animation */
+.artwork.artwork-entering,
+.artwork.artwork-new,
+.artwork.artwork-removing,
+.artwork.artwork-pulse {
+    will-change: transform, opacity;
+}
+
+/* Remove will-change after animation */
+.artwork.animation-done {
+    will-change: auto;
+}
+
+/* Disable hover effects during animations and sorting */
+.gallery.is-sorting .artwork:hover,
+.artwork.artwork-entering:hover,
+.artwork.artwork-new:hover,
+.artwork.artwork-removing:hover {
+    transform: translateY(0) scale(1) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Normal hover effect */
+.artwork:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.artwork-container {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.artwork-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    
+    /* Prevent image flicker */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.artwork:hover .artwork-container img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Lazy loading styles */
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+img.lazy-loaded {
+    opacity: 1;
+}
+
+/* Animation States */
+.artwork.artwork-entering {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+}
+
+.artwork.artwork-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Staggered animation delays */
+.artwork.artwork-visible.delay-1 { transition-delay: 0.05s; }
+.artwork.artwork-visible.delay-2 { transition-delay: 0.10s; }
+.artwork.artwork-visible.delay-3 { transition-delay: 0.15s; }
+.artwork.artwork-visible.delay-4 { transition-delay: 0.20s; }
+.artwork.artwork-visible.delay-5 { transition-delay: 0.25s; }
+.artwork.artwork-visible.delay-6 { transition-delay: 0.30s; }
+
+/* New artwork animation */
+.artwork.artwork-new {
+    animation: newArtworkAppear 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    transform-origin: center center;
+}
+
+/* Simplified but smooth animation */
+@keyframes newArtworkAppear {
+    0% { opacity: 0; transform: scale(0) rotate(-180deg) translateY(50px) translateX(-30px); }
+    20% { opacity: 0.3; transform: scale(0.4) rotate(-135deg) translateY(30px) translateX(-20px); }
+    40% { opacity: 0.6; transform: scale(0.8) rotate(-90deg) translateY(10px) translateX(-10px); }
+    60% { opacity: 0.8; transform: scale(1.15) rotate(-45deg) translateY(-5px) translateX(-5px); }
+    80% { opacity: 0.9; transform: scale(0.95) rotate(5deg) translateY(5px) translateX(0); }
+    90% { opacity: 0.95; transform: scale(1.02) rotate(2deg) translateY(2px) translateX(0); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg) translateY(0) translateX(0); }
+}
+
+/* Remove animation */
+.artwork.artwork-removing {
+    animation: artworkRemove 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+    pointer-events: none;
+}
+
+@keyframes artworkRemove {
+    0% { opacity: 1; transform: scale(1) rotate(0deg) translateY(0) translateX(0); }
+    20% { opacity: 0.9; transform: scale(0.98) rotate(-5deg) translateY(-5px) translateX(5px); }
+    40% { opacity: 0.7; transform: scale(0.9) rotate(-15deg) translateY(-10px) translateX(10px); }
+    60% { opacity: 0.5; transform: scale(0.7) rotate(-30deg) translateY(-20px) translateX(15px); }
+    80% { opacity: 0.2; transform: scale(0.4) rotate(-60deg) translateY(-30px) translateX(20px); }
+    100% { opacity: 0; transform: scale(0.1) rotate(-90deg) translateY(50px) translateX(30px); }
+}
+
+/* Pulse animation */
+.artwork.artwork-pulse {
+    animation: artworkPulse 2s ease-in-out;
+}
+
+@keyframes artworkPulse {
+    0%, 100% { 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+    }
+    50% { 
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 0 10px rgba(76, 175, 80, 0.1); 
+    }
+}
+
+/* Action buttons */
+.artwork-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.artwork-container:hover .artwork-actions {
+    opacity: 1;
+}
+
+.btn-edit, .btn-delete {
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.btn-edit {
+    background-color: #9DC08B;
+}
+
+.btn-delete {
+    background-color: #F95454;
+}
+
+.btn-edit:hover {
+    background-color: #01928b;
+    transform: scale(1.1);
+}
+
+.btn-delete:hover {
+    background-color: #C62E2E;
+    transform: scale(1.1);
+}
+
+/* Artwork info */
+.artwork-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.artwork-info h3 {
+    color: var(--title-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'JetBrains Mono', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.artwork-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.truncated-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.btn-see-more {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: var(--button-color);
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-see-more:hover {
+    color: var(--button-hover-color);
+    text-decoration: underline;
+}
+
+/* Sortable styles */
+.sortable-ghost {
+    opacity: 0.4;
+}
+
+.sortable-chosen {
+    cursor: move;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.sortable-drag {
+    cursor: move;
+    transform: rotate(2deg);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Skeleton loader */
+.artwork-skeleton {
+    background: #f0f0f0;
+    min-height: 400px;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-img {
+    height: 320px;
+    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 20%, #f0f0f0 40%, #f0f0f0 100%);
+    background-size: 200px 100%;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+    .artwork,
+    .artwork.artwork-visible,
+    .artwork.artwork-new,
+    .artwork.artwork-removing {
+        animation: none !important;
+        transition: opacity 0.3s ease !important;
+    }
+    
+    .artwork:hover {
+        transform: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    @keyframes artworkPulse {
+        0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); }
+        50% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); }
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 1600px) {
+    .artwork { width: calc(25% - 15px); }
+}
+
+@media (max-width: 1200px) {
+    .artwork { width: calc(33.333% - 14px); }
+}
+
+@media (max-width: 900px) {
+    .artwork { width: calc(50% - 10px); }
+}
+
+@media (max-width: 600px) {
+    .artwork { width: 100%; }
+}
+
+/* Print styles */
+@media print {
+    .gallery {
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .artwork {
+        width: 100% !important;
+        page-break-inside: avoid;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+/* Debug styles */
+.gallery-debug .artwork {
+    border: 2px solid red !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* Ensure visibility */
+body {
+    height: auto !important;
+    overflow-x: hidden;
+    overflow-y: auto !important;
+}
+
+html {
+    height: auto !important;
+    overflow: auto !important;
+}
+
+main {
+    overflow: visible;
+    height: auto;
+    min-height: auto;
+}

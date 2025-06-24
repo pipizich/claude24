@@ -1,0 +1,18 @@
+/* lightbox.css - Main lightbox styles bundle */
+
+/* Import all lightbox modules */
+@import url('./lightbox-layout.css');
+@import url('./lightbox-interactive.css');
+@import url('./lightbox-themes.css');
+/* 
+  Lightbox modular structure:
+  - lightbox-layout.css: Core layout & structure
+  - lightbox-interactive.css: Interactive features & editing
+  - lightbox-themes.css: Dark/light themes & styling
+  
+  This approach provides:
+  ✅ Better maintainability
+  ✅ Cleaner code organization  
+  ✅ Easier debugging
+  ✅ Selective loading capability
+*/

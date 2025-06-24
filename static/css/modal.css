@@ -1,0 +1,127 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    position: relative;
+    background-color: var(--background-color);
+    margin: 10% auto;
+    padding: 30px 30px 50px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: modalopen 0.3s;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+}
+@keyframes modalopen {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Enhanced Close Button */
+.close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+    text-decoration: none;
+    outline: none;
+}
+
+/* Subtle shadow when blended into background */
+.close::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.02);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover state - prominent and professional */
+.close:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    box-shadow: 
+        0 4px 15px rgba(238, 90, 82, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.close:hover::before {
+    opacity: 1;
+}
+
+/* Active/pressed state */
+.close:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 2px 8px rgba(238, 90, 82, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus state for accessibility */
+.close:focus {
+    outline: 2px solid rgba(238, 90, 82, 0.5);
+    outline-offset: 2px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .close {
+        color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .close::before {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+#view-description-text {
+    max-height: 60vh;
+    overflow-y: auto;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-family: 'JetBrains Mono', monospace;
+}
+#view-title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+.modal.modal-entering {
+    opacity: 0;
+    transform: scale(0.7);
+}
+.modal.modal-visible {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
