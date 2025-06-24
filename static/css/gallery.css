@@ -228,7 +228,7 @@ img.lazy-loaded {
 }
 
 .btn-edit {
-    background-color: #9DC08B;
+    background-color: #3b82f6;
 }
 
 .btn-delete {
@@ -236,7 +236,7 @@ img.lazy-loaded {
 }
 
 .btn-edit:hover {
-    background-color: #01928b;
+    background-color: #2563eb;
     transform: scale(1.1);
 }
 
